@@ -1,6 +1,6 @@
  멀티 로봇 namespace, Localization 적용
 =============
-멀티 로봇 시스템을 위해 로봇 별 namespace 및 Localization 적용
+멀티 로봇 시스템을 위해 로봇별 namespace 및 Localization 적용한 프로젝트
 
 
 
@@ -25,11 +25,21 @@
   
 <br>
 
+참고
+-------------
+
+* [AI, Deep Learning and Robotics](https://robotics.snowcron.com/robotics_ros2/multi_bot_03_launch.htm)
+* [turtlebot3_multi_robot](https://github.com/arshadlab/turtlebot3_multi_robot)
+* [turtlebot3 github](https://github.com/ROBOTIS-GIT/turtlebot3)
+
+<br>
+<br>
+
 진행 내용
 -------------
 
 **1) mapping 깨짐 & map 범위 벗어남**
-* 문제
+* 문제점
   - turtlebot3 크기에 비해 큰 월드 & slam으로 인한 오차 누적
   - turtlebot3가 맵 범위 벗어남
 
@@ -37,40 +47,46 @@
 
 * 해결 방안
   - 라이다 센서 감지범위 3.5 >> 10 m 확장
+  - 매핑이 부족한 픽셀은 gimp로 수정 
   - map.yaml의 origin [-2.52,-8.59,0] >> [-4.52, -8.59, 0]으로 맵 기준점 조정
 
 <br>
 <br> 
 
 **2) urdf 네임스페이스 적용**
-* 문제
+* 문제점
    - 각 로봇마다 tf tree 생성을 위해 네임스페이스 적용 필요 
 
 <br> 
 
 * 해결 방안
-   - 각 로봇의 urdf robot name prefix 적용
+   - 각 로봇의 urdf `robot name` prefix 적용
    - gazebo sensor plugin 추가
+   - package.xml에 pacakge dependencies 추가 
     
 <br>
 <br>
 
-**3) 해결해야할 과제**
-   - gazeibi_ros_ray_sensor 불러오기 실패로 bsae_link 및 관련 프레임 생성 불가 
-   - turtlebot3 burger로 localization 실행가능하나 waffle에서 불가능한 점 
 
+결과
+-------------
+
+* 3대 로봇의 tf tree 생성완료
+* localization 적용 및 정상 작동 확인
 
 <br>
 <br>
 
-![KakaoTalk_20250217_164812658](https://github.com/user-attachments/assets/eda8bb99-2bc6-42dc-b5e2-68468839151f)
+
+### 실행 결과 이미지
+
+<br>
+
+![image](https://github.com/user-attachments/assets/e1b78df0-e6f8-4ffb-949e-689c9eeee914)
+
+![image](https://github.com/user-attachments/assets/fbda7d83-e934-4556-94d3-75f93cdd590e)
 
 
-<img src="https://github.com/user-attachments/assets/1b1f3a38-bf87-4904-a4e9-772dc0eddf77" alt="ezgif-5-fa2ab96e05" width="500">
 
-
-![image](https://github.com/user-attachments/assets/a7b69677-2386-4fe4-a847-90486d8d18c8)
-
-
-
+![image](https://github.com/user-attachments/assets/4e3b388e-17f0-4b4d-987b-f854d7524b6b)
 
